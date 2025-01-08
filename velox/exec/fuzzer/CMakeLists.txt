@@ -81,14 +81,24 @@ target_link_libraries(
 
 add_library(velox_row_number_fuzzer_lib RowNumberFuzzer.cpp)
 
+target_link_libraries(
+  velox_row_number_fuzzer_lib
+  velox_fuzzer_util
+  velox_type
+  velox_vector_fuzzer
+  velox_exec_test_lib
+  velox_expression_test_utility)
+
 # RowNumber Fuzzer.
 add_executable(velox_row_number_fuzzer RowNumberFuzzerRunner.cpp)
 
 target_link_libraries(
   velox_row_number_fuzzer velox_row_number_fuzzer_lib)
 
+add_library(velox_topn_row_number_fuzzer TopNRowNumberFuzzer.cpp)
+
 target_link_libraries(
-  velox_row_number_fuzzer_lib
+  velox_topn_row_number_fuzzer
   velox_fuzzer_util
   velox_type
   velox_vector_fuzzer
